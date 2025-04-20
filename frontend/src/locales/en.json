@@ -1,0 +1,31 @@
+{
+    "dashboard": {
+        "title": "Dashboard",
+        "settings": "Settings",
+        "userLang": "Interface Language",
+        "speakerlang": "Speaker's Language",
+        "settimer": "Set Timer",
+        "start": "Start",
+        "stop": "Stop",
+        "pause": "Pause",
+        "resume": "Resume",
+        "pausemessage": "Your time has been paused.",
+        "darkmode": "Dark Mode",
+        "lightmode": "Light Mode",
+        "langs": {
+            "en": "English",
+            "fr": "French",
+            "no": "Norwegian"
+        }
+    },
+    "preview": {
+        "title": "Preview",
+        "speakingIn": "Speaking in {lang}",
+        "message": {
+            "start": "The countdown will start when you start talking.",
+            "remain": "You have still this time left:",
+            "hurry": "Hurry up! You have only this time left:",
+            "end": "Time's up! Please finish your speech."
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "dashboard": {
+        "title": "Kontrollpanel",
+        "settings": "Innstillinger",
+        "userLang": "Grensesnittspråk",
+        "speakerlang": "Talerens språk",
+        "settimer": "Still inn tidtaker",
+        "start": "Start",
+        "stop": "Stopp",
+        "pause": "Pause",
+        "resume": "Fortsett",
+        "pausemessage": "Tiden din er pauset.",
+        "darkmode": "Mørk modus",
+        "lightmode": "Lys modus",
+        "langs": {
+            "en": "Engelsk",
+            "fr": "Fransk",
+            "no": "Norsk"
+        }
+    },
+    "preview": {
+        "title": "Forhåndsvisning",
+        "speakingIn": "Taler på {lang}",
+        "message": {
+            "start": "Nedtellingen vil starte når du begynner å snakke.",
+            "remain": "Du har fortsatt denne tiden igjen:",
+            "hurry": "Skynd deg! Du har bare denne tiden igjen:",
+            "end": "Tiden er ute! Vennligst avslutt talen din."
+        }
+    }
+}

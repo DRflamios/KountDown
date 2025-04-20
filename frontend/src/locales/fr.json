@@ -1,0 +1,31 @@
+{
+    "dashboard": {
+        "title": "Panneau de contrôle",
+        "settings": "Paramètres",
+        "userLang": "Langue de l'interface",
+        "speakerlang": "Langue de l'intervenant",
+        "settimer": "Régler le minuteur",
+        "start": "Démarrer",
+        "stop": "Arrêter",
+        "pause": "Pause",
+        "resume": "Reprendre",
+        "pausemessage": "Votre temps est en pause.",
+        "darkmode": "Mode sombre",
+        "lightmode": "Mode clair",
+        "langs": {
+            "en": "Anglais",
+            "fr": "Français",
+            "no": "Norvégien"
+        }
+    },
+    "preview": {
+        "title": "Aperçu",
+        "speakingIn": "Présentation en {lang}",
+        "message": {
+            "start": "Le compte à rebours commencera quand vous commencerez à parler.",
+            "remain": "Il vous reste encore ce temps:",
+            "hurry": "Dépêchez-vous ! Il ne vous reste que ce temps:",
+            "end": "Le temps est écoulé ! Veuillez terminer votre présentation."
+        }
+    }
+}

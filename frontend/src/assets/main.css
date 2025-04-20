@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.remove-arrow::-webkit-inner-spin-button,
+.remove-arrow::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    @apply transition-all hover:scale-105 cursor-pointer;
+}
+
+input, select {
+    @apply transition-all cursor-pointer;
+}
