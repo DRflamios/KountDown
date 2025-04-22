@@ -8,7 +8,10 @@
             {{ $t('preview.speakingIn', { lang: $t(`dashboard.langs.${currentLang}`) }) }}
         </div>
         <h1 class="text-3xl mb-8 text-gray-800 dark:text-gray-100 text-center">{{ localizedMessage }}</h1>
-        <b class="text-9xl font-semibold mb-8 text-gray-900 dark:text-white transition-colors" :class="{'time-flash': isTimeZero && !isStopped}">{{ formattedTime }}</b>
+        <b class="text-9xl font-semibold mb-8 text-gray-900 dark:text-white transition-colors" :class="{'time-flash': isTimeZero && !isStopped}">
+            <span v-if="formattedTime.toString() === '00:00'">_ _ : _ _</span>
+            <span v-else>{{ formattedTime }}</span>
+        </b>
         <div v-if="isPaused" class="text-2xl text-amber-500 font-medium text-center">
             {{ pauseMessage }}
         </div>
