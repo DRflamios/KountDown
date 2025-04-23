@@ -4,6 +4,7 @@ import cors from 'cors'
 import { Server } from 'socket.io'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import fs from 'fs'
 
 const app = express()
 const port = 2846
@@ -11,6 +12,32 @@ const server = createServer(app)
 const io = new Server(server)
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+const queueFilePath = path.join(__dirname, 'queue.json');
+
+const saveQueueToFile = async (queue) => {
+    try {
+        await fs.promises.writeFile(queueFilePath, JSON.stringify(queue, null, 2));
+    } catch (error) {
+        console.error('Error saving queue to file:', error);
+    }
+};
+
+const loadQueueFromFile = async () => {
+    try {
+        if (fs.existsSync(queueFilePath)) {
+            const data = await fs.promises.readFile(queueFilePath, 'utf-8');
+            return JSON.parse(data);
+        }
+        return [];
+    } catch (error) {
+        console.error('Error loading queue from file:', error);
+        return [];
+    }
+};
+
+const saveQueueToDB = saveQueueToFile;
+const loadQueueFromDB = loadQueueFromFile;
 
 app.use(express.json())
 app.use(cors())
@@ -24,6 +51,14 @@ let timerState = {
 }
 
 let timerInterval = null
+
+let timerQueue = []
+
+console.log('Initial timerQueue:', timerQueue);
+(async () => {
+    timerQueue = await loadQueueFromFile();
+    console.log('Loaded timerQueue:', timerQueue);
+})();
 
 const updateTimer = () => {
     if (timerState.isRunning && !timerState.isPaused) {
@@ -45,6 +80,11 @@ io.on('connection', (socket) => {
     console.log('Client connected')
     
     socket.emit('timer:state', timerState)
+    socket.emit('queue:update', timerQueue)
+
+    socket.on('speaker:update', (data) => {
+        io.emit('speaker:update', data);
+    });
 
     socket.on('timer:input', (data) => {
         timerState.minutes = parseInt(data.minutes)
@@ -86,6 +126,48 @@ io.on('connection', (socket) => {
         }
 
         io.emit('timer:state', timerState)
+    })
+
+    socket.on('queue:add', async (timer) => {
+        timerQueue.push(timer)
+        await saveQueueToDB(timerQueue)
+        io.emit('queue:update', timerQueue)
+    })
+
+    socket.on('queue:remove', async (index) => {
+        if (index >= 0 && index < timerQueue.length) {
+            timerQueue.splice(index, 1)
+            await saveQueueToDB(timerQueue)
+            io.emit('queue:update', timerQueue)
+        }
+    })
+
+    socket.on('queue:startNext', () => {
+        if (timerQueue.length > 0) {
+            const nextTimer = timerQueue.shift()
+            timerState.minutes = nextTimer.minutes
+            timerState.seconds = nextTimer.seconds
+            timerState.isRunning = true
+            timerState.isPaused = false
+
+            if (timerInterval) {
+                clearInterval(timerInterval)
+            }
+            timerInterval = setInterval(updateTimer, 1000)
+
+            io.emit('timer:state', timerState)
+            io.emit('queue:update', timerQueue)
+        }
+    })
+
+    socket.on('queue:save', async (queue) => {
+        timerQueue = queue
+        await saveQueueToDB(timerQueue)
+    })
+
+    socket.on('queue:load', async () => {
+        timerQueue = await loadQueueFromDB()
+        socket.emit('queue:loaded', timerQueue)
     })
 
     socket.on('disconnect', () => {

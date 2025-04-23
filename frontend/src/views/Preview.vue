@@ -15,6 +15,9 @@
         <div v-if="isPaused" class="text-2xl text-amber-500 font-medium text-center">
             {{ pauseMessage }}
         </div>
+        <p v-if="speakerName" class="text-md mt-1 italic text-gray-600 dark:text-gray-400 text-center">
+            {{ speakerName }}
+        </p>
     </div>
 </template>
 
@@ -32,6 +35,10 @@ export default {
         speakerLang: {
             type: String,
             default: null
+        },
+        speakerName: {
+            type: String,
+            required: false
         }
     },
     setup(props) {
@@ -44,6 +51,7 @@ export default {
         const isStopped = ref(true)
         const messageKey = ref('preview.message.start')
         const currentLang = ref(props.speakerLang || localStorage.getItem('speakerLang') || 'en')
+        const speakerName = ref(props.speakerName || '')
 
         const isTimeZero = computed(() => {
             return minutes.value === 0 && seconds.value === 0 && !isStopped.value
@@ -96,6 +104,12 @@ export default {
             }
         })
 
+        watch(() => props.speakerName, (newName) => {
+            if (newName) {
+                speakerName.value = newName
+            }
+        })
+
         onMounted(() => {
             if (localStorage.getItem('darkMode') === 'true') {
                 document.documentElement.classList.add('dark')
@@ -132,6 +146,11 @@ export default {
                 isWarning.value = false
                 isStopped.value = true
             })
+
+            socket.on('speaker:update', (data) => {
+                currentLang.value = data.speakerLang;
+                speakerName.value = data.speakerName;
+            });
         })
 
         onBeforeUnmount(() => {

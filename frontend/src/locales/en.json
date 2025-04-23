@@ -16,6 +16,26 @@
             "en": "English",
             "fr": "French",
             "no": "Norwegian"
+        },
+        "queue": {
+            "title": "Queue Management",
+            "speaker": "Speaker Name",
+            "minutes": "Minutes",
+            "seconds": "Seconds",
+            "add": "Add to Queue",
+            "remove": "Remove",
+            "startNext": "Start Next"
+        },
+        "manualTimer": {
+            "title": "Manual Timer",
+            "start": "Start Timer"
+        },
+        "generalControls": {
+            "title": "General Timer Controls",
+            "start": "Start",
+            "stop": "Stop",
+            "pause": "Pause",
+            "resume": "Resume"
         }
     },
     "preview": {

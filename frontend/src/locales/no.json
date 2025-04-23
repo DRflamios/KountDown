@@ -16,6 +16,26 @@
             "en": "Engelsk",
             "fr": "Fransk",
             "no": "Norsk"
+        },
+        "queue": {
+            "title": "Køhåndtering",
+            "speaker": "Navn på taler",
+            "minutes": "Minutter",
+            "seconds": "Sekunder",
+            "add": "Legg til i køen",
+            "remove": "Fjern",
+            "startNext": "Start neste"
+        },
+        "manualTimer": {
+            "title": "Manuell tidtaker",
+            "start": "Start tidtaker"
+        },
+        "generalControls": {
+            "title": "Generelle tidtakerkontroller",
+            "start": "Start",
+            "stop": "Stopp",
+            "pause": "Pause",
+            "resume": "Gjenoppta"
         }
     },
     "preview": {

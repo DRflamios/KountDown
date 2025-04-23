@@ -1,1 +1,4 @@
 node_modules/
+
+# Data of the app
+queue.json

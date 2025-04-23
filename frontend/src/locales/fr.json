@@ -16,6 +16,26 @@
             "en": "Anglais",
             "fr": "Français",
             "no": "Norvégien"
+        },
+        "queue": {
+            "title": "Gestion de la file d'attente",
+            "speaker": "Nom de l'orateur",
+            "minutes": "Minutes",
+            "seconds": "Secondes",
+            "add": "Ajouter à la file",
+            "remove": "Supprimer",
+            "startNext": "Démarrer le suivant"
+        },
+        "manualTimer": {
+            "title": "Minuteur manuel",
+            "start": "Démarrer le minuteur"
+        },
+        "generalControls": {
+            "title": "Contrôles généraux du minuteur",
+            "start": "Démarrer",
+            "stop": "Arrêter",
+            "pause": "Pause",
+            "resume": "Reprendre"
         }
     },
     "preview": {

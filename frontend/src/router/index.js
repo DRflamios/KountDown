@@ -15,6 +15,10 @@ const router = createRouter({
       path: '/preview',
       name: 'preview',
       component: Preview,
+      props: (route) => ({
+        speakerName: route.query.speakerName || '',
+        speakerLang: route.query.speakerLang || 'en',
+      }),
     },
     {
       path: '/dashboard',

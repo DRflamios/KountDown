@@ -42,3 +42,4 @@ KountDown is a simple, real-time countdown timer application designed for presen
    node index.js
    ```
 The web app will can be accessed with [localhost:2846](http://localhost:2846)
+Data from the queue will be stored on a JSON file named **queue.json**
